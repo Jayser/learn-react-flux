@@ -27,10 +27,14 @@ var BlogItem = React.createClass({
             clickHandler: this.clickHandler
         });
 
+        var $divider = React.createElement(Divider, {
+            className: classPrefix + 'divider'
+        });
+
         return (
             React.createElement('article', {
                 className: classPrefixItem + ' ' + classState
-            }, $title, $description, $button)
+            }, $title, $description, $button, $divider)
         )
     }
 });
