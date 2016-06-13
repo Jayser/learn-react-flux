@@ -7,7 +7,7 @@ var BlogList = React.createClass({
     },
     render: function () {
         var classPrefix = this.props.classPrefix;
-        var items = this.state.data.map(function (item) {
+        var BlogItems = this.state.data.map(function (item) {
             item = item || {};
             item.classPrefix = classPrefix;
             return (
@@ -15,12 +15,13 @@ var BlogList = React.createClass({
             )
         });
         return (
-            React.createElement('div', {
+            React.createElement('section', {
                     className: classPrefix + 'wrapper'
                 },
-                React.createElement('ul', {
-                    className: classPrefix + 'list'
-                }, items)
+                React.createElement('h1', {
+                    className: classPrefix + 'title'
+                }, this.props.title),
+                BlogItems
             )
         );
     }
