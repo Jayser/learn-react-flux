@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>React+Flux Blog</title>
-
-    <script src="components/Button.css"></script>
-    <script src="components/BlogItem.css"></script>
-    <script src="components/BlogItemList.css"></script>
-    <script src="components/App.css"></script>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
 </head>
 <body>
 
-<div id="app"></div>
+    <div id="app"></div>
 
-<script src="node_modules/react/dist/react.js"></script>
-<script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <!-- Component: button -->
+    <link rel="stylesheet" href="components/button/button.css">
+    <script src="components/button/button.js"></script>
 
-<script src="components/Button.js"></script>
-<script src="components/BlogItem.js"></script>
-<script src="components/BlogItemList.js"></script>
-<script src="components/App.js"></script>
+    <!-- Component: blog-item -->
+    <link rel="stylesheet" href="components/blog-item/blog-item.css">
+    <script src="components/blog-item/blog-item.js"></script>
 
-<script src="index.js"></script>
+    <!-- Component: blog-list -->
+    <link rel="stylesheet" href="components/blog-list/blog-list.css">
+    <script src="components/blog-list/blog-list.js"></script>
+
+    <!-- Component: start -->
+    <link rel="stylesheet" href="components/app.css">
+    <script src="components/app.js"></script>
 
 </body>
 </html>
