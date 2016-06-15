@@ -3,24 +3,44 @@
   "version": "1.0.0",
   "description": "App for learning React and Flux",
   "scripts": {
-    "start": "static -p 3000 .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack --progress --colors --watch & static -p 8080 & open http://localhost:8080",
+    "webpackServer": "webpack-dev-server --content-base src & open http://localhost:8080"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sergey-trotsyuk/learn-react-flux.git"
   },
-  "author": "Sergey Trotsyuk",
+  "author": "Sergey Azizov",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sergey-trotsyuk/learn-react-flux/issues"
   },
   "homepage": "https://github.com/sergey-trotsyuk/learn-react-flux#readme",
   "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^1.12.4",
+    "jquery-ui": "^1.10.4",
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-bootstrap": "^0.29.4",
+    "react-dom": "^15.1.0",
+    "webpack": "^1.13.1"
   },
   "devDependencies": {
-    "node-static": "^0.7.7"
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "clean-webpack-plugin": "^0.1.9",
+    "copy-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.12.0",
+    "eslint-loader": "^1.3.0",
+    "eslint-plugin-react": "^5.1.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "node-static": "^0.7.7",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack-dev-server": "^1.14.1"
   }
 }
