@@ -1,0 +1,4 @@
+:local(.item) {
+    color: #ccc;
+    /*composes: textBold from '../../main.css'*/
+}
