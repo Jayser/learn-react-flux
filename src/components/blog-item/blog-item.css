@@ -1,4 +1,4 @@
 :local(.item) {
-    color: #ccc;
+    opacity: 0.5;
     /*composes: textBold from '../../main.css'*/
 }

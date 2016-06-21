@@ -4,46 +4,57 @@
 
 "use strict";
 
+// Vendors
 import $ from "jquery";
 import "jquery-ui";
-
-import React from "react";
+import React from 'react';
 import ReactDOM from "react-dom";
 import Divider from "../divider/divider";
-import { Button } from 'react-bootstrap';
 import styles from './blog-item.css';
+import { Button } from 'react-bootstrap';
+import BlogActions from '../../actions/blog';
+import { Link } from 'react-router';
 
-export default class extends React.Component {
+export default class BlogItem extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {state: this.props.item.state}
+    }
+
+    refButton(el) {
+        this.$refButton = ReactDOM.findDOMNode(el);
+    }
+
+    componentDidMount() {
+        $(this.$refButton).tooltip();
+    }
+
+    componentWillUnmount() {
+        $(this.$refButton).tooltip('destroy');
     }
 
     clickHandler() {
-        this.setState({state: !this.state.state});
-    }
-
-    initTooltipPlugin(el) {
-        if (!el) {return}
-        $(ReactDOM.findDOMNode(el)).tooltip();
+        BlogActions.markIsRead(this.props.article.key);
     }
 
     render() {
-        const btnText = this.state.state ? "Read" : "Unread";
-
+        const btnText = this.props.article.isRead ? "Read" : "Unread";
+        const detailsLink = "/article/" + this.props.article.key;
         return (
-            <article className={!this.state.state ? styles.item : ""}>
-                <h1 className={this.props.moduleName + "article-title"}>{this.props.item.title}</h1>
-                <p className={this.props.moduleName + "title"}>{this.props.item.description}</p>
-                <Button className={this.props.moduleName + "button"}
-                        bsSize="small"
+            <article className={!this.props.article.isRead ? styles.item : ""}>
+                <h1>
+                    <Link to={detailsLink}>
+                        {this.props.article.title}
+                    </Link>
+                </h1>
+                <p>{this.props.article.description}</p>
+                <Button bsSize="small"
                         bsStyle="primary"
                         title={btnText}
-                        ref={this.initTooltipPlugin.bind(this)}
+                        ref={this.refButton.bind(this)}
                         onClick={this.clickHandler.bind(this)}>
                     {btnText}
                 </Button>
-                <Divider className={this.props.moduleName + "divider"}/>
+                <Divider />
             </article>
         )
     }

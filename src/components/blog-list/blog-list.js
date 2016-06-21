@@ -6,38 +6,36 @@
 
 import React from "react";
 import BlogItem from "../blog-item/blog-item";
+import BlogStore from "../../stores/blog";
 import './blog-list.css';
+
+function getBlogState() {
+    return {articles: BlogStore.getArticles()};
+}
 
 export default class BlogList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {data: this.props.data};
+        this.state = getBlogState();
+        this._onChange = this._onChange.bind(this);
+    }
+
+    _onChange() {
+        this.setState(getBlogState());
+    }
+
+    componentDidMount() {
+        BlogStore.addChangeListener(this._onChange);
+    }
+
+    componentWillUnmount() {
+        BlogStore.removeChangeListener(this._onChange);
     }
 
     render() {
-        const BlogItems = this.state.data.map((item) => {
-            return (
-                <BlogItem key={item.key} moduleName={this.props.moduleName} item={item}/>
-            )
-        }, this);
-
-        return (
-            <section className={this.props.moduleName+ "wrapper"}>
-                <h1 className={this.props.moduleName+ "title"}>{this.props.title}</h1>
-                {BlogItems}
-            </section>
-        )
+        const BlogItems = this.state.articles.map((article) =>
+            <BlogItem key={article.key} article={article} />
+        );
+        return <div>{BlogItems}</div>;
     }
 }
-
-BlogList.propsType = {
-    moduleName: React.PropTypes.string.isRequired,
-    title: React.PropTypes.string.isRequired,
-    data: React.PropTypes.object.isRequired
-};
-
-BlogList.defaultProps = {
-    moduleName: null,
-    title: null,
-    data: null
-};

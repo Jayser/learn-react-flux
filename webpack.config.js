@@ -18,20 +18,6 @@ module.exports = {
     watchOptions: {
         aggregateTimeout: 100
     },
-    // Set where have to search modules
-    resolve: {
-        fallback: path.resolve(rootPath, "./src"),
-        alias: {
-            "jquery-ui": "jquery-ui/jquery-ui.js",
-            modules: path.join(__dirname, "node_modules")
-        },
-        extensions: ['', '.js']
-    },
-    // Set where have to search loaders
-    resolveLoader: {
-        modulesDirectories: ['node_modules'],
-        extensions: ['', '.js']
-    },
     devtool: isDevMode ? 'cheap-module-source-map' : null,
     module: {
         loaders: [
@@ -41,7 +27,7 @@ module.exports = {
                 loader: 'babel',
                 query: {
                     presets: ['es2015'],
-                    plugins: ['transform-react-jsx']
+                    plugins: ['transform-react-jsx', 'transform-object-assign']
                 }
             }, {
                 test: /\.css$/,
@@ -87,7 +73,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: "jquery",
             jquery: "jQuery",
-            "windows.jQuery": "jquery"
+            "window.jQuery": "jquery"
         })
     ]
 };
