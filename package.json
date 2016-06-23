@@ -18,12 +18,15 @@
   "homepage": "https://github.com/sergey-trotsyuk/learn-react-flux#readme",
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "flux": "^2.1.1",
     "jquery": "^1.12.4",
     "jquery-ui": "^1.10.4",
     "react": "^15.1.0",
     "react-bootstrap": "^0.29.4",
     "react-dom": "^15.1.0",
+    "react-mixin": "^2.0.2",
     "react-router": "^2.4.1",
+    "reflux": "^0.4.1",
     "webpack": "^1.13.1"
   },
   "devDependencies": {

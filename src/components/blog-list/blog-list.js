@@ -25,11 +25,11 @@ export default class BlogList extends React.Component {
     }
 
     componentDidMount() {
-        BlogStore.addChangeListener(this._onChange);
+        this.unsubscribeBlogStore = BlogStore.listen(this._onChange);
     }
 
     componentWillUnmount() {
-        BlogStore.removeChangeListener(this._onChange);
+        this.unsubscribeBlogStore();
     }
 
     render() {

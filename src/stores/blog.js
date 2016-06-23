@@ -1,13 +1,13 @@
 /**
  * Created by Sergii_Azizov on 6/16/2016.
  */
-import EventEmitter from 'events';
-import appDispatcher from '../dispatchers/appDispather';
-import blogConstants from '../constants/blog';
 
-const EVENT_CHANGE = 'change';
+"use strict";
 
-const blogStore = Object.assign(EventEmitter.prototype, {
+import Reflux from 'reflux';
+import Actions from '../actions/blog';
+
+export default Reflux.createStore({
     store: [
         {
             key: 0,
@@ -28,41 +28,24 @@ const blogStore = Object.assign(EventEmitter.prototype, {
             isRead: false
         }
     ],
-
-    getArticles() {
+    getInitialState: function () {
         return this.store;
     },
 
-    toggleMarkIsRead(key) {
-        this.store[key].isRead = !this.store[key].isRead;
+    init: function () {
+        this.listenTo(Actions.markIsReadAction, this.markIsRead);
     },
 
-    getItem(key) {
+    getArticles: function () {
+        return this.store;
+    },
+
+    getItem: function (key) {
         return this.store[key];
     },
 
-    emitChange() {
-        this.emit(EVENT_CHANGE);
-    },
-
-    addChangeListener(listener) {
-        this.on(EVENT_CHANGE, listener);
-    },
-
-    removeChangeListener(listener) {
-        this.removeListener(EVENT_CHANGE, listener);
-    },
-
-    dispatcherIndex: appDispatcher.register((action) => {
-        switch (action.actionType) {
-            case blogConstants.CHANGE_MARK_IS_READ:
-                blogStore.toggleMarkIsRead(action.key);
-                blogStore.emitChange();
-                break;
-            default:
-                return true;
-        }
-    })
+    markIsRead: function (key) {
+        this.store[key].isRead = !this.store[key].isRead;
+        this.trigger(this.store);
+    }
 });
-
-export default blogStore;

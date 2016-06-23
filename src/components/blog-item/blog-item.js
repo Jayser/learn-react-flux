@@ -33,7 +33,7 @@ export default class BlogItem extends React.Component {
     }
 
     clickHandler() {
-        BlogActions.markIsRead(this.props.article.key);
+        BlogActions.markIsReadAction(this.props.article.key);
     }
 
     render() {
